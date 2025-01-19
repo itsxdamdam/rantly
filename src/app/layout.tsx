@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
+"use client"
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { AbstraxionProvider } from "@burnt-labs/abstraxion";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,9 +14,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "rantly",
-  description: "rantly web app",
+const treasuryConfig = {
+  treasury: "xion1sycp2hwj4c38run45cegfmj9dryc3nu7ptr3ur3ja3cx8jnvgxeqa9qak9",
 };
 
 export default function RootLayout({
@@ -27,7 +28,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <AbstraxionProvider
+          config={treasuryConfig}>
+          {children}
+        </AbstraxionProvider>
       </body>
     </html>
   );
